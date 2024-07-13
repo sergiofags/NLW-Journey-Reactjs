@@ -5,11 +5,15 @@ import { Button } from "../../components/button";
 interface ConfirmTripModalProps {
     closeConfirmTripModal: () => void;
     createTrip: (event: FormEvent<HTMLFormElement>) => void;
+    setOwnerEmail: (email: string) => void;
+    setOwnerName: (name: string) => void;
 }
 
 export function ConfirmTripModal({
     closeConfirmTripModal,
-    createTrip
+    createTrip,
+    setOwnerEmail,
+    setOwnerName
 }: ConfirmTripModalProps){
     
 
@@ -27,11 +31,11 @@ export function ConfirmTripModal({
                 <form onSubmit={createTrip} className='space-y-3'>
                     <div className='h-14 px-4 bg-zinc-950 border-zinc-800 rounded-lg flex items-center gap-2'>
                         <User className='size-5 text-zinc-400' />
-                        <input name='name' type="text" placeholder="Seu nome completo" className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"/>
+                        <input onChange={event => setOwnerName(event.target.value)} name='name' type="text" placeholder="Seu nome completo" className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"/>
                     </div>
                     <div className='h-14 px-4 bg-zinc-950 border-zinc-800 rounded-lg flex items-center gap-2'>
                         <AtSign className='size-5 text-zinc-400' />
-                        <input name='email' type="email" placeholder="Seu e-mail pessoal" className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"/>
+                        <input onChange={event => setOwnerEmail(event.target.value)} name='email' type="email" placeholder="Seu e-mail pessoal" className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"/>
                     </div>
                 <Button type="submit" variant={'primary'} size="full">
                     Confirmar criação da viagem
